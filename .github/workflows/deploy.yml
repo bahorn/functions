@@ -13,4 +13,4 @@ jobs:
           PROJECT_ID: ${{secrets.GCLOUD_PROJECT_ID}}
           APPLICATION_CREDENTIALS: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
         with:
-          args: functions deploy calendar_req --source ./functions/ics-2-ical  --runtime python38 --trigger-http --allow-unauthenticated
+          cli: ./deploy.sh
