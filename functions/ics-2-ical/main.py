@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import requests
 import pytz
 from icalendar import Calendar, Event
@@ -14,17 +14,17 @@ Maintained by b.a.a.horn AT students DOT uu DOT nl
 
 
 def ics_daterange(datestr):
-    day, time = datestr.split('\n')
-    start, end = time.split(' – ')
-
+    print(datestr)
+    day, date, time = datestr.split(', ')
     start = datetime.strptime(
-        f"{day} {start}",
+        f"{day}, {date} {time}",
         '%A, %d.%m.%Y %H:%M'
     ).replace(tzinfo=pytz.timezone('Europe/Amsterdam'))
     end = datetime.strptime(
-        f"{day} {end}",
+        f"{day}, {date} {time}",
         '%A, %d.%m.%Y %H:%M'
     ).replace(tzinfo=pytz.timezone('Europe/Amsterdam'))
+    end += timedelta(hours=1)
 
     return (start, end)
 
